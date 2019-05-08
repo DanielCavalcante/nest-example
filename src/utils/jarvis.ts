@@ -20,7 +20,7 @@ export class Jarvis {
   }
 
   isFixedLen = (value, len, message) => {
-      if (value.length !== len) {
+      if (!value || value.length !== len) {
           this.errors.push(message);
       }
   }

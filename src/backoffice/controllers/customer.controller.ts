@@ -3,6 +3,7 @@ import { Controller, Get, Post, Put, Delete, Param, Body, UseInterceptors } from
 import { Customer } from '../models/customer.model';
 import { ValidatorInterceptor } from 'src/interceptors/validator.interceptor';
 import { CreateCustomerContract } from '../contracts/customer.contracts';
+import { Result } from '../models/result.model';
 
 @Controller('v1/customers')
 export class CustomerController {
@@ -13,22 +14,22 @@ export class CustomerController {
 
   @Get(':document')
   getById(@Param('document') document) {
-    return `costumer ${document}`
+    return new Result(null, true, [], null)
   }
 
   @Post()
   @UseInterceptors(new ValidatorInterceptor(new CreateCustomerContract()))
   post(@Body() body: Customer) {
-    return body
+    return new Result('Created!', true, body, null)
   }
 
   @Put(':document')
   put(@Param('document') document, @Body() body) {
-    return { customer: document, data: body }
+    return new Result('Updated!', true, body, null)
   }
 
   @Delete(':document')
   delete(@Param('document') document) {
-    return document
+    return new Result('Removed!', true, null, null)
   }
 }
