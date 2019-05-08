@@ -1,5 +1,6 @@
 'use strict'
 import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Customer } from '../models/customer.model';
 
 @Controller('v1/customers')
 export class CustomerController {
@@ -14,7 +15,7 @@ export class CustomerController {
   }
 
   @Post()
-  post(@Body() body) {
+  post(@Body() body: Customer) {
     return body
   }
 
