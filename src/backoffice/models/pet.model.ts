@@ -1,6 +1,11 @@
 'use strict'
 
 export class Pet {
-  constructor() {
+  constructor(
+    public name: string,
+    public gender: string,
+    public kind: string,
+    public brand: string
+  ) {
   }
 }
