@@ -2,7 +2,9 @@
 import { Jarvis } from 'src/utils/jarvis';
 import { Contract } from './contract';
 import { Customer } from '../models/customer.model';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class CreateCustomerContract implements Contract {
 
   errors: any[];  
