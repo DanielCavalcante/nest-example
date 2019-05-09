@@ -1,15 +1,15 @@
 'use strinc'
 import { Jarvis } from 'src/utils/jarvis';
 import { Contract } from './contract';
-import { Customer } from '../models/customer.model';
 import { Injectable } from '@nestjs/common';
+import { CreateCustomerDto } from '../dtos/create-customer.dto';
 
 @Injectable()
 export class CreateCustomerContract implements Contract {
 
-  errors: any[];  
+  errors: any[];
   
-  validate(model: Customer): boolean {
+  validate(model: CreateCustomerDto): boolean {
     const jarvis = new Jarvis();
 
     jarvis.hasMinLen(model.name, 5, 'Invalid name')
