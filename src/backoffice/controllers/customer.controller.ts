@@ -1,9 +1,9 @@
 'use strict'
 import { Controller, Get, Post, Put, Delete, Param, Body, UseInterceptors } from '@nestjs/common';
-import { Customer } from '../models/customer.model';
 import { ValidatorInterceptor } from 'src/interceptors/validator.interceptor';
 import { CreateCustomerContract } from '../contracts/customer.contracts';
 import { Result } from '../models/result.model';
+import { CreateCustomerDto } from '../dtos/create-customer.dto';
 
 @Controller('v1/customers')
 export class CustomerController {
@@ -19,7 +19,7 @@ export class CustomerController {
 
   @Post()
   @UseInterceptors(new ValidatorInterceptor(new CreateCustomerContract()))
-  post(@Body() body: Customer) {
+  post(@Body() body: CreateCustomerDto) {
     return new Result('Created!', true, body, null)
   }
 
