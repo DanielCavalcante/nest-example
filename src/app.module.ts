@@ -3,9 +3,20 @@ import { BackofficeModule } from './backoffice/backoffice.module'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { MongooseModule } from '@nestjs/mongoose'
 import { StoreModule } from './store/store.module';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthService } from './shared/services/auth.service';
+import { JwtStrategy } from './shared/strategies/jwt.strategy';
 
 @Module({
   imports: [
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secretOrPrivateKey: 'secretKey',
+      signOptions: {
+        expiresIn: 3600
+      }
+    }),
     MongooseModule.forRoot(''),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -21,6 +32,6 @@ import { StoreModule } from './store/store.module';
     StoreModule
   ],
   controllers: [],
-  providers: [],
+  providers: [AuthService, JwtStrategy],
 })
 export class AppModule {}
