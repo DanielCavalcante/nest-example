@@ -9,11 +9,11 @@ import { StoreModule } from './store/store.module';
     MongooseModule.forRoot(''),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '127.0.0.1',
+      host: '10.0.13.12',
       port: 3306,
       username: 'root',
-      password: 'mysql',
-      database: '7180',
+      password: 'ar7711',
+      database: 'area_clientes_softcom',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true
     }),
